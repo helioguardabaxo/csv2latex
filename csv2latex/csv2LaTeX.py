@@ -119,7 +119,9 @@ def read_csv(file_name):
     csv_file=open(file_name,"r")
     csv_lines=[]
     for line in csv_file:
-        splited_line=line.split(",")
+        underline = ''.join([i for i in csv_file]) \
+        .replace("_", "\_")  # adjusts \ to .tex formats
+        splited_line=underline.split(",")
         csv_lines.append(splited_line)
     csv_file.close()
     return csv_lines
