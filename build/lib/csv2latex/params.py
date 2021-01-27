@@ -1,9 +1,9 @@
 
-header={"static_1":"\\begin{table}[]\n","static_2":'\centering\n',"caption":'\caption',"label":'\label',"static_3":"\\scalebox{0.5}{\n","align":'\\begin{tabular}'}
+header={"static_1":"\\begin{table}[]\n","static_2":'\centering\n',"caption":'\caption',"label":'\label',"scalebox":'\scalebox{0.5}',"align":'\\begin{tabular}'}
 
 footer='''
 \end{tabular}
-}
+\end{scalebox}
 \end{table}
 '''
 
