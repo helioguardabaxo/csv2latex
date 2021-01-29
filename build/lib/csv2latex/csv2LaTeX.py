@@ -63,7 +63,7 @@ def escape_char(lines_list):
     for i,item_1 in enumerate(lines_list):
         for j,item_2 in enumerate(item_1):
             for char in char_list:  # instead of using for use a list to find and replace
-                lines_list[i][j]=item_2.replace(char,"\\" +r"\hline"+char)
+                lines_list[i][j]=item_2.replace(char,"\\"+char)
     return lines_list
 
 
@@ -85,7 +85,7 @@ def white_space(line_list):
     return len_list
 
 
-def header_handler(file,col_num,caption="my-caption2",label="my-label"):
+def header_handler(file,col_num,caption="my-caption",label="my-label"):
     '''
 
     :param file: input latex file
@@ -98,7 +98,8 @@ def header_handler(file,col_num,caption="my-caption2",label="my-label"):
     file.write(header["static_2"])
     file.write(header["caption"]+"{"+caption+"}\n")
     file.write(header["label"]+"{"+label+"}\n")
-    file.write(header["align"]+"{"+"c"*col_num+"}\n")
+    file.write(header["static_3"])
+    file.write(header["align"]+"{"+"|l"*col_num+"}\n")
 
 def footer_handler(file):
     '''
@@ -118,7 +119,9 @@ def read_csv(file_name):
     csv_file=open(file_name,"r")
     csv_lines=[]
     for line in csv_file:
-        splited_line=line.split(",")
+        underline = ''.join([i for i in csv_file]) \
+        .replace("_", "\_")  # adjusts \ to .tex formats
+        splited_line=underline.split(",")
         csv_lines.append(splited_line)
     csv_file.close()
     return csv_lines
@@ -153,7 +156,7 @@ def create_latex(file_name,dir_folder="LaTeX",empty_space=True):
                         latex_file.write(" "*list_len[i])
                 else:
                     latex_file.write(item_2[:-1])
-            latex_file.write("\\\\"+"\n")
+            latex_file.write("\\\\"+" \hline"+"\n")
         footer_handler(latex_file)
         latex_file.close()
         print("Done!")
